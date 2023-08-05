@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Temperature Converter</title>
+    <style>
+         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: linear-gradient(to right, hsl(0, 1%, 22%), #2c3136);
+            background-size: cover;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+        }
+
+        #converter {
+            max-width: 850px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgb(8, 0, 0);
+            background-color: #fff;
+            color: #000000;
+        }
+
+        h1 {
+            text-align: center;
+            color: #000000;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .conversion-group {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 1px;
+        }
+
+        .conversion-group > div {
+            flex: 1;
+            margin-right: 38px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 10px;
+            border: 2px solid #b36c02de;
+            border-radius: 5px;
+            font-size: 16px;
+            color: #444;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px 20px;
+            background-color: #b36c02de;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background-color: #0c0001;
+        }
+
+        #result {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="converter">
+        <h1>Temperature Converter</h1>
+        <div class="conversion-group">
+            <div>
+                <label for="celsius">Celsius:</label>
+                <input type="number" id="celsius" placeholder="Enter temperature in Celsius">
+            </div>
+            <div>
+                <label for="fahrenheit">Fahrenheit:</label>
+                <input type="number" id="fahrenheit" placeholder="Enter temperature in Fahrenheit">
+            </div>
+            <div>
+                <label for="kelvin">Kelvin:</label>
+                <input type="number" id="kelvin" placeholder="Enter temperature in Kelvin">
+            </div>
+        </div>
+
+        <div class="conversion-group">
+            <button onclick="convertCelsiusToFahrenheit()">C to F</button>
+            <button onclick="convertFahrenheitToCelsius()">F to C</button>
+            <button onclick="convertCelsiusToKelvin()">C to K</button>
+            <button onclick="convertKelvinToCelsius()">K to C</button>
+        </div>
+
+        <div class="conversion-group">
+            <button onclick="convertFahrenheitToKelvin()">F to K</button>
+            <button onclick="convertKelvinToFahrenheit()">K to F</button>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function convertCelsiusToFahrenheit() {
+            var celsius = parseFloat(document.getElementById("celsius").value);
+            var fahrenheit = (celsius * 9/5) + 32;
+            document.getElementById("fahrenheit").value = fahrenheit.toFixed(2);
+            document.getElementById("kelvin").value = (celsius + 273.15).toFixed(2);
+            document.getElementById("result").innerText = celsius + "°C is equal to " + fahrenheit.toFixed(2) + "°F and " + (celsius + 273.15).toFixed(2) + "K";
+        }
+
+        function convertFahrenheitToCelsius() {
+            var fahrenheit = parseFloat(document.getElementById("fahrenheit").value);
+            var celsius = (fahrenheit - 32) * 5/9;
+            document.getElementById("celsius").value = celsius.toFixed(2);
+            document.getElementById("kelvin").value = (celsius + 273.15).toFixed(2);
+            document.getElementById("result").innerText = fahrenheit + "°F is equal to " + celsius.toFixed(2) + "°C and " + (celsius + 273.15).toFixed(2) + "K";
+        }
+
+        function convertCelsiusToKelvin() {
+            var celsius = parseFloat(document.getElementById("celsius").value);
+            var kelvin = celsius + 273.15;
+            document.getElementById("kelvin").value = kelvin.toFixed(2);
+            document.getElementById("fahrenheit").value = ((celsius * 9/5) + 32).toFixed(2);
+            document.getElementById("result").innerText = celsius + "°C is equal to " + kelvin.toFixed(2) + "K and " + ((celsius * 9/5) + 32).toFixed(2) + "°F";
+        }
+
+        function convertKelvinToCelsius() {
+            var kelvin = parseFloat(document.getElementById("kelvin").value);
+            var celsius = kelvin - 273.15;
+            document.getElementById("celsius").value = celsius.toFixed(2);
+            document.getElementById("fahrenheit").value = ((celsius * 9/5) + 32).toFixed(2);
+            document.getElementById("result").innerText = kelvin + "K is equal to " + celsius.toFixed(2) + "°C and " + ((celsius * 9/5) + 32).toFixed(2) + "°F";
+        }
+
+        function convertFahrenheitToKelvin() {
+            var fahrenheit = parseFloat(document.getElementById("fahrenheit").value);
+            var celsius = (fahrenheit - 32) * 5/9;
+            var kelvin = celsius + 273.15;
+            document.getElementById("celsius").value = celsius.toFixed(2);
+            document.getElementById("kelvin").value = kelvin.toFixed(2);
+            document.getElementById("result").innerText = fahrenheit + "°F is equal to " + celsius.toFixed(2) + "°C and " + kelvin.toFixed(2) + "K";
+        }
+
+        function convertKelvinToFahrenheit() {
+            var kelvin = parseFloat(document.getElementById("kelvin").value);
+            var celsius = kelvin - 273.15;
+            var fahrenheit = (celsius * 9/5) + 32;
+            document.getElementById("celsius").value = celsius.toFixed(2);
+            document.getElementById("fahrenheit").value = fahrenheit.toFixed(2);
+            document.getElementById("result").innerText = kelvin + "K is equal to " + celsius.toFixed(2) + "°C and " + fahrenheit.toFixed(2) + "°F";
+        }
+    </script>
+</body>
+</html>
